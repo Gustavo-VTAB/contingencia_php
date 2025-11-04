@@ -1,13 +1,3 @@
-
-export interface Usuario {
-    id:number;
-    name:string;
-    email:string;
-    password:string;
-    isAdmin:boolean;
-    status:string;
-    
-}
 export interface Manager {
   id: number;
   name: string;
@@ -41,6 +31,7 @@ export interface Phone {
   number?: string;
   operator?: string;
   easy_at?: string;
+  card?: Card;
 }
 
 export interface FbProfile {
@@ -65,6 +56,7 @@ export interface FbBm {
   name: string;
   status: 'active' | 'inactive';
   obs?: string;
+  profiles_count?: number;
 }
 
 export interface FbPage {
@@ -75,6 +67,8 @@ export interface FbPage {
   ig_email?: string;
   ig_password?: string;
   obs?: string;
+  bm_id?: number;
+  bm?: FbBm;
 }
 
 export type TabType = 'profiles' | 'portfolios' | 'pages' | 'cards' | 'phones';
@@ -84,4 +78,12 @@ export interface TabItem {
   label: string;
   count: number;
   icon: string;
+}
+
+export interface FilterState {
+  search: string;
+  status: string;
+  manager: string;
+  sortBy: string;
+  sortOrder: 'asc' | 'desc';
 }

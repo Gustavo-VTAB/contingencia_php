@@ -13,7 +13,7 @@ export default function Router() {
         <Route path="/"
           element={
             <DefaultLayout>
-              <Home />
+              <Dashboard />
             </DefaultLayout>
           }
         />
@@ -29,13 +29,13 @@ export default function Router() {
           }
         />
 
-        <Route path="/usuarios"
+        {/* <Route path="/usuarios"
           element={
             <DefaultLayout>
               <Usuarios />
             </DefaultLayout>
           }
-        />
+        /> */}
 
         <Route path="/Perfils"
           element={

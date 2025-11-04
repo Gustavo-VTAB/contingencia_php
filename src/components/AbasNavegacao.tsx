@@ -1,4 +1,4 @@
-// src/components/AbasNavegacao.tsx
+
 import { Users, Building2, FileText, CreditCard, Phone } from 'lucide-react';
 import { Contador } from './ui/Contador';
 import type { TabType } from '../types';

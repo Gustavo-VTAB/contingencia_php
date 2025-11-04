@@ -1,6 +1,4 @@
-// src/pages/Dashboard.tsx
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
 import AbasNavegacao from '../components/AbasNavegacao';
 import type { TabItem } from '../components/AbasNavegacao';
 import { Contador } from '../components/ui/Contador';
@@ -31,12 +29,10 @@ export default function Dashboard() {
       </div>
     );
   };
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">DASHBOARD TESTE</h1>
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
-
+      {/* ❌ Removido o Navbar duplicado */}
 
       <main className="max-w-7xl mx-auto px-6 py-8">
         <div className="mb-4 text-gray-700 font-medium">
