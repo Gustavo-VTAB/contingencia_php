@@ -10,7 +10,6 @@ type TabType = 'phones' | 'managers' | 'accounts' | 'cards' | 'profiles' | 'prox
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<TabType>('profiles');
   
-  // Mapeia a aba para o endpoint correspondente
   const getEndpoint = (tab: TabType) => {
     switch (tab) {
       case 'phones': return 'phones';
@@ -37,7 +36,6 @@ export default function Dashboard() {
     remove
   } = useApi(endpoint);
 
-  // Ações principais
   const handleAdd = () => {
     toast.info('Funcionalidade de adicionar em desenvolvimento');
   };
@@ -74,7 +72,6 @@ export default function Dashboard() {
     }
   };
 
-  // Exibe aviso para abas não implementadas
   if (['accounts', 'proxies'].includes(activeTab)) {
     return (
       <main className="max-w-7xl mx-auto px-6 py-8">
