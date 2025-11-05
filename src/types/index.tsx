@@ -87,3 +87,4 @@ export interface FilterState {
   sortBy: string;
   sortOrder: 'asc' | 'desc';
 }
+

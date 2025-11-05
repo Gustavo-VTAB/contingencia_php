@@ -1,3 +1,4 @@
+
 interface ContadorProps {
   count: number | string;
   active?: boolean;
