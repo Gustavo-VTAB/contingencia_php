@@ -1,8 +1,6 @@
-import { Contador } from './ui/Contador';
-
-interface StatusProps {
+interface StatusBadgeProps {
   status: string;
-  className?: string;
+  count?: number;
 }
 
 const statusConfig = {
@@ -22,21 +20,23 @@ const statusConfig = {
     label: 'Inativo',
     className: 'bg-red-100 text-red-800 border-red-200'
   },
-  admin: {
-    label: 'Administrador',
-    className: 'bg-purple-100 text-purple-800 border-purple-200'
+  all: {
+    label: 'Todos',
+    className: 'bg-gray-100 text-gray-800 border-gray-200'
   }
 };
 
-export default function StatusContador({ status, className = '' }: StatusProps) {
+export default function StatusBadge({ status, count }: StatusBadgeProps) {
   const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.active;
   
   return (
-    <Contador 
-      variant="outline" 
-      className={`${config.className} ${className} font-medium`}
-    >
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${config.className}`}>
       {config.label}
-    </Contador>
+      {count !== undefined && (
+        <span className="ml-1 bg-white bg-opacity-50 rounded-full px-1.5 py-0.5 text-xs">
+          {count}
+        </span>
+      )}
+    </span>
   );
 }

@@ -14,8 +14,8 @@ export interface User {
 
 export interface Card {
   id: number;
-  status: 'active' | 'inactive';
   name: string;
+  status: 'active' | 'inactive';
   number?: string;
   validity?: string;
   cvv?: string;
@@ -34,7 +34,7 @@ export interface Phone {
   card?: Card;
 }
 
-export interface FbProfile {
+export interface Profile {
   id: number;
   manager_id?: number;
   phone_id?: number;
@@ -44,47 +44,34 @@ export interface FbProfile {
   manager?: Manager;
   phone?: Phone;
   email?: string;
-  recovery_email?: string;
   phone_number?: string;
-  proxy?: string;
   pages_count?: number;
   bms_count?: number;
 }
 
-export interface FbBm {
+export interface Account {
   id: number;
   name: string;
   status: 'active' | 'inactive';
+  email?: string;
   obs?: string;
-  profiles_count?: number;
 }
 
-export interface FbPage {
+export interface Proxy {
   id: number;
-  status: 'active' | 'inactive';
   name: string;
-  ig_login?: string;
-  ig_email?: string;
-  ig_password?: string;
+  status: 'active' | 'inactive';
+  ip?: string;
+  port?: number;
+  username?: string;
+  password?: string;
   obs?: string;
-  bm_id?: number;
-  bm?: FbBm;
 }
 
-export type TabType = 'profiles' | 'portfolios' | 'pages' | 'cards' | 'phones';
-
-export interface TabItem {
-  id: TabType;
-  label: string;
-  count: number;
-  icon: string;
-}
+export type TabType = 'profiles' | 'managers' | 'cards' | 'phones' | 'accounts' | 'proxies';
 
 export interface FilterState {
   search: string;
   status: string;
-  manager: string;
   sortBy: string;
-  sortOrder: 'asc' | 'desc';
 }
-
