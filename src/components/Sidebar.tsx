@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Users, 
   Smartphone, 
@@ -9,9 +10,12 @@ import {
   ChevronLeft, 
   ChevronRight, 
   LogOut,
-  Facebook
+  Facebook,
+  Activity
 } from 'lucide-react';
 import type { TabType } from '../types';
+import { api } from '../services/api';
+import { toast } from 'sonner';
 
 interface SidebarProps {
   activeTab: TabType;
@@ -35,9 +39,21 @@ const navItems = [
 
 export default function Sidebar({ activeTab, onTabChange, counts }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const navigate = useNavigate();
 
   const getCount = (tabId: TabType) => {
     return counts[tabId as keyof typeof counts] || 0;
+  };
+
+  const handleLogout = async () => {
+    try {
+      await api.logout();
+      toast.success('Logout realizado com sucesso!');
+      navigate('/login');
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+      navigate('/login');
+    }
   };
 
   return (
@@ -95,13 +111,22 @@ export default function Sidebar({ activeTab, onTabChange, counts }: SidebarProps
             </button>
           );
         })}
+
+        {/* Logs Button */}
+        <button
+          className="w-full flex items-center justify-start p-3 rounded-lg text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+          onClick={() => navigate('/logs')}
+        >
+          <Activity className="h-5 w-5 mr-3 flex-shrink-0" />
+          {isExpanded && <span className="flex-grow text-left">Logs</span>}
+        </button>
       </nav>
 
       {/* Footer */}
       <div className="p-4 border-t border-gray-700">
         <button
           className="w-full flex items-center justify-start p-3 rounded-lg text-sm text-red-400 hover:bg-gray-700 hover:text-red-300 transition-colors"
-          onClick={() => alert('Logout realizado!')}
+          onClick={handleLogout}
         >
           <LogOut className="h-5 w-5 mr-3 flex-shrink-0" />
           {isExpanded && <span>Sair</span>}

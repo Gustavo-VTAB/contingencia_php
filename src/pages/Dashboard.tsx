@@ -9,7 +9,7 @@ import PhoneCard from '../components/PhoneCard';
 import AccountCard from '../components/AccountCard';
 import ProxyCard from '../components/ProxyCard';
 import { useData } from '../hooks/useData';
-import { mockApi } from '../services/mockApi';
+import { api } from '../services/api';
 import type { TabType, Profile, Manager, Card, Phone, Account, Proxy } from '../types';
 
 export default function Dashboard() {
@@ -27,12 +27,12 @@ export default function Dashboard() {
   } = useData(activeTab);
 
   const sidebarCounts = {
-    profiles: mockApi.getProfilesCount().total,
-    managers: mockApi.getManagersCount(),
-    cards: mockApi.getCardsCount(),
-    phones: mockApi.getPhonesCount(),
-    accounts: mockApi.getAccountsCount(),
-    proxies: mockApi.getProxiesCount(),
+    profiles: api.getProfilesCount().total,
+    managers: api.getManagersCount(),
+    cards: api.getCardsCount(),
+    phones: api.getPhonesCount(),
+    accounts: api.getAccountsCount(),
+    proxies: api.getProxiesCount(),
   };
 
   const handleAdd = () => {
@@ -55,9 +55,15 @@ export default function Dashboard() {
     toast.info(`Editando: ${item.name}`);
   };
 
-  const handleDelete = (item: any) => {
+  const handleDelete = async (item: any) => {
     if (window.confirm(`Tem certeza que deseja excluir "${item.name}"?`)) {
-      toast.success(`"${item.name}" excluído com sucesso`);
+      try {
+        await api.delete(activeTab, item.id);
+        toast.success(`"${item.name}" excluído com sucesso`);
+        refresh();
+      } catch (error: any) {
+        toast.error(error.message || 'Erro ao excluir');
+      }
     }
   };
 

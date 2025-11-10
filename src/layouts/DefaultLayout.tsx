@@ -1,10 +1,42 @@
-// import Header from "../components/Header";
+// import Sidebar from '../components/Sidebar';
+// import type { TabType } from '../types';
 
-// export default function DefaultLayout({ children }: { children: React.ReactNode }) {
+// interface DefaultLayoutProps {
+//   activeTab?: TabType;
+//   onTabChange?: (tab: TabType) => void;
+//   counts?: {
+//     profiles: number;
+//     managers: number;
+//     cards: number;
+//     phones: number;
+//     accounts: number;
+//     proxies: number;
+//   };
+// }
+
+// export default function DefaultLayout({ 
+//   activeTab = 'profiles', 
+//   onTabChange = () => {}, 
+//   counts = {
+//     profiles: 0,
+//     managers: 0,
+//     cards: 0,
+//     phones: 0,
+//     accounts: 0,
+//     proxies: 0
+//   }
+// }: DefaultLayoutProps) {
 //   return (
-//     <div className="min-h-screen bg-gray-50 dark:bg-gray-50 text-gray-800 dark:text-gray-100">
-//       <Header />
-//       <main className="p-6">{children}</main>
+//     <div className="flex h-screen bg-gray-50">
+//       <Sidebar
+//         activeTab={activeTab}
+//         onTabChange={onTabChange}
+//         counts={counts}
+//       />
+      
+//       <div className="flex-1 overflow-auto">
+//         {children}
+//       </div>
 //     </div>
 //   );
 // }
